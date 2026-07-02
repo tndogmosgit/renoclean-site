@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Devis gratuit — RENOCLEAN Île-de-France</title>
+  <meta name="description" content="Demandez un devis gratuit à RENOCLEAN pour votre nettoyage diogène ou rénovation en Île-de-France. Réponse sous 24h.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">RENO<span>CLEAN</span><span>.</span></a>
+    <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-menu">
+      <li><a href="nettoyage-diogene.html">Nettoyage diogène</a></li>
+      <li><a href="renovation.html">Rénovation</a></li>
+      <li><a href="a-propos.html">À propos</a></li>
+      <li><a href="devis.html" class="nav-cta">Devis gratuit</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero-inner">
+    <h1>Demander un <span>devis gratuit</span></h1>
+    <p>Remplissez le formulaire ci-dessous. Nous vous recontactons sous 24h.</p>
+  </section>
+
+  <div class="page-section">
+    <div id="form-success" class="form-success">
+      ✅ Votre demande a bien été envoyée. Nous vous recontactons sous 24h.
+    </div>
+    <form class="form" action="https://formspree.io/f/VOTRE_ID_FORMSPREE" method="POST" id="devis-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nom">Nom complet *</label>
+          <input type="text" id="nom" name="nom" required placeholder="Jean Dupont">
+        </div>
+        <div class="form-group">
+          <label for="telephone">Téléphone *</label>
+          <input type="tel" id="telephone" name="telephone" required placeholder="06 00 00 00 00">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email *</label>
+        <input type="email" id="email" name="email" required placeholder="jean.dupont@email.com">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="type-logement">Type de logement *</label>
+          <select id="type-logement" name="type_logement" required>
+            <option value="">Sélectionner...</option>
+            <option value="appartement">Appartement</option>
+            <option value="maison">Maison</option>
+            <option value="studio">Studio</option>
+            <option value="autre">Autre</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="surface">Surface (m²)</label>
+          <input type="number" id="surface" name="surface" placeholder="ex: 45" min="1">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="service">Service souhaité *</label>
+        <select id="service" name="service" required>
+          <option value="">Sélectionner...</option>
+          <option value="nettoyage">Nettoyage diogène uniquement</option>
+          <option value="renovation">Rénovation uniquement</option>
+          <option value="les-deux">Nettoyage + Rénovation</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="urgence">Urgence</label>
+        <select id="urgence" name="urgence">
+          <option value="normal">Normal (sous 1 semaine)</option>
+          <option value="urgent">Urgent (sous 48h)</option>
+          <option value="flexible">Flexible</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="description">Description du besoin</label>
+        <textarea id="description" name="description" placeholder="Décrivez brièvement la situation (état du logement, contexte, particularités...)"></textarea>
+      </div>
+      <div class="form-submit">
+        <button type="submit" class="btn btn--primary">Envoyer ma demande →</button>
+      </div>
+    </form>
+  </div>
+
+  <footer class="footer">
+    © 2025 RENOCLEAN · <a href="mailto:contact@renoclean.fr">contact@renoclean.fr</a> · Île-de-France
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    const form = document.getElementById('devis-form');
+    const success = document.getElementById('form-success');
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = new FormData(form);
+        const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+        if (res.ok) {
+          form.style.display = 'none';
+          success.style.display = 'block';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
